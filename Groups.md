@@ -2,7 +2,7 @@
 
 *The groups have been formed based on the prior experience you have indicated, mixing competences to balance the groups.*
 
-**Group 1:** ... </ins>
+**Group 1:** ...<ins>Case XXX </ins>
 
 **Group 2:** ... </ins>
 
