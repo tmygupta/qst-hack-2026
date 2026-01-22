@@ -1,4 +1,29 @@
 
+# Project Description
+
+In quantum optics, a common difficulty is finding the right set of operations that produces a desired quantum state. In this project, we would like you to investigate whether a *neural network* can be trained to predict the appropriate *quantum circuit configurations* that generate a specified *target quantum state*.
+
+In quantum optics, we usually work with **continuous‑variable (CV) quantum information**. Here, information is encoded in observables with continuous spectra, such as the quadratures (position and momentum) of the electromagnetic field. This is in contrast to the more widely studied discrete two‑level systems. The general idea is to apply transformations to states of light and to use a phase‑space representation, such as the **Wigner function**, to visualise the resulting states. A Wigner function is a phase‑space representation of a quantum state that plays the role of a quasi‑probability distribution over position and momentum. It encodes the same information as the density matrix and reproduces the correct position and momentum statistics as marginals, but unlike a true classical probability distribution, it can take negative values. These negative regions signal non‑classical features of the state and are closely related to quantum interference.
+
+In this field, we often make a distinction between **Gaussian** and **non‑Gaussian** states of light. Gaussian states and Gaussian operations are relatively easy to generate experimentally and are also efficiently classically simulable. However, non‑Gaussian states are required to enable universal quantum computation and to exhibit strong forms of non‑classicality, which act as key resources for universal CV quantum computing, quantum error correction, entanglement distillation, and possible quantum advantages.
+
+Many common optical operations—such as beam splitters, phase shifters, and squeezing operations—preserve Gaussianity and therefore cannot produce non‑Gaussian states on their own. The most experimentally practical way of producing non‑Gaussian states is through non‑Gaussian measurements. In this project, we will focus on **photon‑number‑resolving detectors (PNRDs)**, where the measurement collapses part of an entangled state and the conditional resulting state becomes non‑Gaussian.
+
+That said, finding the right sequence of operations to generate specific non‑Gaussian states is highly non‑trivial. For this reason, we believe that neural networks could provide insight into discovering suitable circuit architectures capable of producing such states. To make the problem feasible, we suggest focusing on a circuit of the type depicted in the figure. Here, squeezed Gaussian states are used as inputs (with a \(\pi/2\) phase offset), followed by a set of parameterised beam splitters. The circuit (prior to photon detection) is known to be capable of implementing any Gaussian unitary, provided that there are at least \(M(M-1)/2\) beam splitters, where \(M\) is the number of modes (horizontal lines in the circuit depiction).
+
+With this in mind, we would like you to generate training data using **Mr Mustard** and the provided code snippets. You will then build a neural network using PyTorch, TensorFlow, JAX, or your preferred machine‑learning library, and train it to take as input the pixels of an image of the resulting Wigner function and output the required parameters of the quantum circuit that produces the corresponding Wigner function. See provided image for reference. 
+
+## Useful comments
+
+- The mixing angle of a beam splitter is bounded between \(0\) and \(\pi/2\) (inclusive).
+- The relative phase of a beam splitter is bounded between \(0\) and \(2\pi\) (exclusive).
+
+The parameters can, in principle, take on any real value, but values outside these ranges correspond to redundant parameterisations rather than new physical operations. You should therefore consider bounding the outputs of your neural network to these ranges.
+
+For the curious reader, a useful reference is the overview by **Jonatan Bohr** on the different operations used in continuous‑variable quantum information.
+
+<img width="755" height="4000" alt="image" src="https://github.com/user-attachments/assets/e4adace3-edd9-49fe-9f81-0dc6873c9c49" />
+
 ### Getting started
 
 1. Install the [uv](https://docs.astral.sh/uv/) package and project manager.
