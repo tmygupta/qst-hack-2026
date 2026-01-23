@@ -13,18 +13,20 @@ Many common optical operations—such as beam splitters, phase shifters, and squ
 
 That said, finding the right sequence of operations to generate specific non‑Gaussian states is highly non‑trivial. For this reason, we believe that **NNs** could provide insight into discovering suitable circuit architectures capable of producing such states. To make the problem feasible, we suggest focusing on a circuit of the type depicted in the figure. Here, squeezed Gaussian states are used as inputs (with a \(\pi/2\) phase offset), followed by a set of parameterised beam splitters. The circuit (prior to photon detection) is [known to be capable of implementing any unitary transformation](https://opg.optica.org/optica/fulltext.cfm?uri=optica-3-12-1460), provided that there are at least \(M(M-1)/2\) beam splitters, where \(M\) is the number of modes (horizontal lines in the circuit depiction). Each beam splitter has two parameters: theta, the beam splitting ratio, and phi, the relative phase. In addition, the final state is dependent on the squeezing parameters \(r_i\) of the input states and the number of photons detected by the detectors. 
 
-With this in mind, we would like you to generate training data using https://github.com/XanaduAI/MrMustard and the provided code snippets. You will then build a neural network using PyTorch, TensorFlow, JAX, or your preferred machine‑learning library, and train it. As inputs to the NN, use the pixels of an image of the resulting Wigner function and as outputs the required parameters of the quantum circuit that produces the corresponding Wigner function. See the above image for a quick representation of the workflow. 
+With this in mind, we would like you to generate training data using [MrMustar](https://github.com/XanaduAI/MrMustard) and the provided code snippets. You will then build a neural network using PyTorch, TensorFlow, JAX, or your preferred machine‑learning library, and train it. As inputs to the NN, use the pixels of an image of the resulting Wigner function and as outputs the required parameters of the quantum circuit that produces the corresponding Wigner function. See the above image for a quick representation of the workflow. 
 
 ### Useful comments and bounds for parameters
 
-- In order to make the simulation tractable, we recommend limiting the **max value for abs(\(r_i\)) to 0.8**. 
+- In order to make the simulation tractable, we recommend limiting the max value for abs(\(r_i\)) to 0.8. 
 - In addition, the maximum number of photons detected in a single PNRD should be limited to 3.
 - The mixing angle (theta) of a beam splitter is bounded between \(0\) and \(\pi/2\) (inclusive).
 - The relative phase of a beam splitter is bounded between \(0\) and \(2\pi\) (exclusive).
 
-The parameters theta and phi can, in principle, take on any real value, but values outside these ranges correspond to redundant parameterisations rather than new physical operations. You should therefore consider bounding the outputs of your neural network to these ranges. The squeezing values can also be complex, but with these specific alternating \(\pi/2\) input states along the \(x\) and \(p\) directions, we ensure \(r\) is real.
+The parameters theta and phi can, in principle, take on any real value, but values outside these ranges correspond to redundant parameterisations rather than new physical operations. You should therefore consider bounding the outputs of your NN to these ranges. The squeezing values can also be complex, but with these specific alternating \(\pi/2\) input states along the \(x\) and \(p\) directions, we ensure \(r\) is real.
 
-A useful reference for those interested in CV quantum information is the overview by *Jonatan Bohr* on the https://arxiv.org/abs/2102.05748 used in continuous‑variable quantum information.
+- The NN could be any type (CNN, RNN etc) and the best choice depends on the approach.
+
+A useful reference for those interested in CV quantum information is [this quick reference](the https://arxiv.org/abs/2102.05748) of the different operations in CV by *Jonatan Bohr*.
 
 
 
