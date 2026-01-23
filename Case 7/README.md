@@ -3,12 +3,13 @@
 
 In quantum optics, a common difficulty is finding the right set of operations that produces a desired quantum state. In this project, we would like you to investigate whether a *neural network* (NN) can be trained to predict the appropriate *quantum circuit configurations* that generate a specified *target quantum state*.
 
-<img width="897" height="4000" alt="image" src="https://github.com/user-attachments/assets/4289f558-45a5-4298-8f5d-f655570e050b" />
+<img width="4000" height="949" alt="image" src="https://github.com/user-attachments/assets/dadf9ed3-f05b-42dd-af6a-d6fcff6b6210" />
 
 
-In quantum optics, we usually work with *continuous‑variable (CV) quantum information*. Here, information is encoded in observables with continuous spectra, such as the quadratures (position and momentum) of the electromagnetic field. This is in contrast to the more widely studied discrete two‑level systems. 
 
-*You do not need to understand all the CV details below to paricipate successfully* nevertheless here is a short overview of the key tools used in this project.
+We usually work with *continuous‑variable (CV) quantum information*. Here, information is encoded in observables with continuous spectra, such as the quadratures (position and momentum) of the electromagnetic field. This is in contrast to the more widely studied discrete two‑level systems. 
+
+*You do not need to understand all the CV details below to participate successfully* nevertheless here is a short overview of the key tools used in this project.
 
 The general idea is to apply transformations to states of light and to use a phase‑space representation, such as the *Wigner function*, to visualise the resulting states. A Wigner function plays the role of a quasi‑probability distribution over position and momentum. It encodes the same information as the density matrix and reproduces the correct position and momentum statistics as marginals, but unlike a true classical probability distribution, it can take negative values. These negative regions signal non‑classical features of the state and are closely related to quantum interference.
 
