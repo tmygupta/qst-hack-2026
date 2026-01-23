@@ -3,7 +3,9 @@
 
 In quantum optics, a common difficulty is finding the right set of operations that produces a desired quantum state. In this project, we would like you to investigate whether a *neural network* can be trained to predict the appropriate *quantum circuit configurations* that generate a specified *target quantum state*.
 
-<img width="755" height="4000" alt="image" src="https://github.com/user-attachments/assets/e4adace3-edd9-49fe-9f81-0dc6873c9c49" />
+
+<img width="897" height="4000" alt="image" src="https://github.com/user-attachments/assets/3da7f260-cddb-46cd-902c-ee5554eee778" />
+
 
 In quantum optics, we usually work with **continuous‑variable (CV) quantum information**. Here, information is encoded in observables with continuous spectra, such as the quadratures (position and momentum) of the electromagnetic field. This is in contrast to the more widely studied discrete two‑level systems. The general idea is to apply transformations to states of light and to use a phase‑space representation, such as the **Wigner function**, to visualise the resulting states. A Wigner function is a phase‑space representation of a quantum state that plays the role of a quasi‑probability distribution over position and momentum. It encodes the same information as the density matrix and reproduces the correct position and momentum statistics as marginals, but unlike a true classical probability distribution, it can take negative values. These negative regions signal non‑classical features of the state and are closely related to quantum interference.
 
