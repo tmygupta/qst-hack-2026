@@ -17,7 +17,7 @@ With this in mind, we would like you to generate training data using [MrMustard]
 
 ### Useful comments and bounds for parameters
 
-- In order to make the simulation tractable, we recommend limiting the max value for abs(\(r_i\)) to 0.8. 
+- In order to make the simulation tractable, we recommend limiting the max value for the squeezing parameter abs(\(r_i\)) to 0.8. 
 - In addition, the maximum number of photons detected in a single PNRD should be limited to 3.
 - The mixing angle (theta) of a beam splitter is bounded between \(0\) and \(\pi/2\) (inclusive).
 - The relative phase of a beam splitter is bounded between \(0\) and \(2\pi\) (exclusive).
