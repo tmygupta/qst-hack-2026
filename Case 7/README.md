@@ -26,7 +26,7 @@ The parameters theta and phi can, in principle, take on any real value, but valu
 
 - The NN could be any type (CNN, RNN etc) and the best choice depends on the approach.
 
-A useful reference for those interested in CV quantum information is [this quick reference](the https://arxiv.org/abs/2102.05748) of the different operations in CV by *Jonatan Bohr*.
+A useful reference for those interested in CV quantum information is [this quick reference](https://arxiv.org/abs/2102.05748) of the different operations in CV by *Jonatan Bohr*.
 
 
 
