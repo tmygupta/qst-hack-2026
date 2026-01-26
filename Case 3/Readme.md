@@ -14,7 +14,7 @@ Implement QSE in qiskit (or another similar package). We encourage you to build 
 
 ### References
 
-[1] Quantum-Centric Algorithm for Sample-Based Krylov Diagonalization, Jeffery Yu et al., arXiv:2501.09702 (2025).
+[1] Quantum-Centric Algorithm for Sample-Based Krylov Diagonalization, Jeffery Yu et al., [arXiv:2501.09702 (2025)](https://arxiv.org/abs/2501.09702).
 
 [2] Partitioned Quantum Subspace Expansion, Tom O’Leary et al, Quantum 9, 1726 (2025).
 
