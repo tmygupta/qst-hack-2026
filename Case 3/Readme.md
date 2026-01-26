@@ -16,9 +16,9 @@ Implement QSE in qiskit (or another similar package). We encourage you to build 
 
 [1] Quantum-Centric Algorithm for Sample-Based Krylov Diagonalization, Jeffery Yu et al., [arXiv:2501.09702 (2025)](https://arxiv.org/abs/2501.09702).
 
-[2] Partitioned Quantum Subspace Expansion, Tom O’Leary et al, Quantum 9, 1726 (2025).
+[2] Partitioned Quantum Subspace Expansion, Tom O’Leary et al, [Quantum 9, 1726 (2025)](https://quantum-journal.org/papers/q-2025-05-05-1726/pdf/).
 
-[3] A Multireference Quantum Krylov Algorithm for Strongly  Correlated Electrons, Nicholas H. Stair et al., J. Chem. Theory Comput. 2020, 16, 4, 2236–2245
+[3] A Multireference Quantum Krylov Algorithm for Strongly  Correlated Electrons, Nicholas H. Stair et al., [J. Chem. Theory Comput. 2020, 16, 4, 2236–2245](https://doi.org/10.1021/acs.jctc.9b01125).
 
 #### Contacts for Case 3
 - Mark Nicholas Jones, mark@mqs.dk
