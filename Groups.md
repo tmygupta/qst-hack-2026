@@ -6,7 +6,7 @@
 
 **Group 2:** Yuchen Wu, Avinaba Majumdar, Lőrinc András Kedves , Manuel . <ins>Case XXX</ins>.
 
-**Group 3:** Mathias Jacques, Sneha Mukhopadhyay, Tanmay Gupta, DRIDI Mohamed Hedi . <ins>Case XXX</ins>.
+**Group 3:** Mathias Jacques, Sneha Mukhopadhyay, Tanmay Gupta, Dridi Mohamed Hedi . <ins>Case XXX</ins>.
 
 **Group 4:** Ekaitz, Javier Fernández, Sushant Yadav . <ins>Case XXX</ins>.
 
@@ -14,7 +14,7 @@
 
 **Group 6:** Amey Bhatuse, Enzo Bocquel, Muhammad Zeshan, Panna Téglás . <ins>Case XXX</ins>.
 
-**Group 7:** EDDOUADI TAHA, Jorge Prieto, Miro Heydtmann, Jinming He . <ins>Case XXX</ins>.
+**Group 7:** Eddouadi Taha, Jorge Prieto, Miro Heydtmann, Jinming He . <ins>Case XXX</ins>.
 
 **Group 8:** António
 Brayan Elian Castiblanco, Esteban, Juan Camilo Henao Montoya . <ins>Case XXX</ins>.
