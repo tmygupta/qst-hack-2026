@@ -8,7 +8,7 @@
 
 **Group 3:** Mathias Jacques, Sneha Mukhopadhyay, Tanmay Gupta, Dridi Mohamed Hedi . <ins>Case 6</ins>.
 
-**Group 4:** Ekaitz, Javier Fernández, Sushant Yadav . <ins>Case 2</ins>.
+**Group 4:** Ekaitz, Javier Fernández, Sushant Yadav, Jinming He, Federico Mastronunzio . <ins>Case 2</ins>.
 
 **Group 5:** Adrian Diaz Valdivielso, Benas Skripkiunas, Lidija Petrovic, Mar . <ins>Case 6</ins>.
 
