@@ -8,7 +8,7 @@ There is one subfolder for each case:
 - Case 3 - Quantum Subspace Expansion (MQS)
 - Case 4 - XXX (KPMG)
 - Case 5 - XXX (KPMG)
-- Case 6 - XXX (Qpurpose)
+- Case 6 - Towards QC applications in weather/climate (Qpurpose)
 - Case 7 - Quantum optical state geneator with machine learning (DTU)
 
 The list of groups can be found in [Groups.md](/Groups.md).
