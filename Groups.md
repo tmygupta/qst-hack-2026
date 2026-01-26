@@ -14,7 +14,7 @@
 
 **Group 6:** Amey Bhatuse, Enzo Bocquel, Muhammad Zeshan, Panna Téglás . <ins>Case 4</ins>.
 
-**Group 7:** Eddouadi Taha, Jorge Prieto, Miro Heydtmann, Jinming He . <ins>Case 5</ins>.
+**Group 7:** Eddouadi Taha, Jorge Prieto, Miro Heydtmann, Jinming He, Nishchay Vora . <ins>Case 5</ins>.
 
 **Group 8:** António
 Brayan Elian Castiblanco, Esteban, Juan Camilo Henao Montoya . <ins>Case 1</ins>.
