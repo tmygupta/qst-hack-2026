@@ -1,0 +1,14 @@
+[project]
+name = "circuit-simulation"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jupyter>=1.1.1",
+    "mrmustard",
+    "plotly>=5.24.1",
+]
+
+[tool.uv.sources]
+mrmustard = { git = "https://github.com/XanaduAI/MrMustard.git" }
