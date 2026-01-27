@@ -13,8 +13,8 @@ def draw_params(N : int, r_limits=(0,0.8), theta_limits=(0,np.pi/2),
     n_modes : tuple, limits for the number of modes (inclusive)
     Returns
     -------
-    params : np.ndarray, array of shape (# of modes * N, 11) containing the drawn parameters where each row contains
-        [r0, r1, r2, theta0, theta1, theta2, phi0, phi1, phi2, n0, n1]
+    params : np.ndarray, array of shape (# of modes * N, 4) containing the drawn parameters where each row contains
+        [[r0, r1, r2], theta0, theta1, theta2, phi0, phi1, phi2, n0, n1]
     """
     
     rng = np.random.default_rng()
@@ -35,5 +35,11 @@ def draw_params(N : int, r_limits=(0,0.8), theta_limits=(0,np.pi/2),
     n0_column = np.tile(n0_flat, N).reshape(-1, 1)
     n1_column = np.tile(n1_flat, N).reshape(-1, 1)
     
-    return np.hstack([repeated_params, n0_column, n1_column])
+    # Group params into arrays: [r_array, theta_array, phi_array, n_array]
+    r_vals = repeated_params[:, :3]
+    theta_vals = repeated_params[:, 3:6]
+    phi_vals = repeated_params[:, 6:]
+    n_vals = np.hstack([n0_column, n1_column])
+    
+    return np.stack([r_vals, theta_vals, phi_vals, n_vals], axis=1)
     

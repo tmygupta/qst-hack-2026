@@ -10,3 +10,4 @@ def save_data(params,images, filename):
     filename : str, name of the file to save the data to
     """
     np.savez_compressed(filename, params=params, images=images)
+    print(f"Data saved to {filename}")
