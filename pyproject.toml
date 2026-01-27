@@ -10,6 +10,7 @@ dependencies = [
     "mrmustard",
     "plotly>=5.24.1",
     "torch",
+    "numpy",
 ]
 
 [tool.uv.sources]
