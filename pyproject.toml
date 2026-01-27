@@ -11,6 +11,8 @@ dependencies = [
     "plotly>=5.24.1",
     "torch",
     "numpy",
+    "jax",
+    "tqdm",
 ]
 
 [tool.uv.sources]

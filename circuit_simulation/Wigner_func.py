@@ -77,25 +77,25 @@ def wigner_from_params(
     wigner : ndarray of shape (grid_size, grid_size)
     """
 
+    Nl = r_vals.shape[0]
     # Input squeezed states
-    input_state = [
-        SqueezedVacuum(
-            i,
-            r_vals[i],
-            phi=(0 if i % 2 == 1 else np.pi / 2)
-        )
-        for i in range(3)
+    input_state = [ SqueezedVacuum(
+                                    i,
+                                    r_vals[i],
+                                    phi=(0 if i % 2 == 1 else np.pi / 2)
+                                )
+        for i in range(Nl)
     ]
 
     # Interferometer
     BS1 = BSgate([0, 1], theta_vals[0], phi_vals[0])
     BS2 = BSgate([1, 2], theta_vals[1], phi_vals[1])
-    BS3 = BSgate([0, 1], theta_vals[2], phi_vals[2])
+    BS3 = BSgate([0, 2], theta_vals[2], phi_vals[2])
     interferometer = BS1 >> BS2 >> BS3
 
     # Post-selection
     measurement = [
-        Number(i, int(n_vals[i])).dual for i in range(2)
+        Number(i, int(n_vals[i])).dual for i in range(Nl - 1)
     ]
 
     # Circuit contraction
