@@ -9,6 +9,7 @@ dependencies = [
     "jupyter>=1.1.1",
     "mrmustard",
     "plotly>=5.24.1",
+    "torch",
 ]
 
 [tool.uv.sources]
