@@ -34,15 +34,19 @@ def draw_params(N : int, r_limits=(0,0.8), theta_limits=(0,np.pi/2),
     n1_flat = n1_grid.flatten()
     num_combinations = len(n0_flat)
     
-    repeated_params = np.repeat(base_params, num_combinations, axis=0)
+    # Tile the base params so each (n0, n1) combination gets N rows
+    repeated_params = np.tile(base_params, (num_combinations, 1))
     
-    n0_column = np.tile(n0_flat, N).reshape(-1, 1)
-    n1_column = np.tile(n1_flat, N).reshape(-1, 1)
+    n0_column = np.repeat(n0_flat, N).reshape(-1, 1)
+    n1_column = np.repeat(n1_flat, N).reshape(-1, 1)
     
     # Group params into arrays: [r_array, theta_array, phi_array, n_array]
     r_vals = repeated_params[:, :3]
     theta_vals = repeated_params[:, 3:6]
     phi_vals = repeated_params[:, 6:]
     n_vals = np.hstack([n0_column, n1_column])
+
     
     return {'r': r_vals, 'theta': theta_vals, 'phi': phi_vals, 'n': n_vals}
+
+draw_params(10)
