@@ -13,8 +13,12 @@ def draw_params(N : int, r_limits=(0,0.8), theta_limits=(0,np.pi/2),
     n_modes : tuple, limits for the number of modes (inclusive)
     Returns
     -------
-    params : np.ndarray, array of shape (# of modes * N, 4) containing the drawn parameters where each row contains
-        [[r0, r1, r2], theta0, theta1, theta2, phi0, phi1, phi2, n0, n1]
+    Let C be the number of permutations of (n0, n1) where n0 and n1
+    params : dict, containing the following keys:
+        'r': ndarray of shape (C * N, 3) - squeezing parameters
+        'theta': ndarray of shape (C * N, 3) - angle parameters
+        'phi': ndarray of shape (C * N, 3) - phase parameters
+        'n': ndarray of shape (C * N, 2) - photon number parameters (n0, n1)
     """
     
     rng = np.random.default_rng()
@@ -41,5 +45,13 @@ def draw_params(N : int, r_limits=(0,0.8), theta_limits=(0,np.pi/2),
     phi_vals = repeated_params[:, 6:]
     n_vals = np.hstack([n0_column, n1_column])
     
-    return np.stack([r_vals, theta_vals, phi_vals, n_vals], axis=1)
+    # Create (M, 4) array where each row contains 4 sub-arrays
+    M = repeated_params.shape[0]
+    result = np.empty((M, 4), dtype=object)
+    for i in range(M):
+        result[i, 0] = r_vals[i]
+        result[i, 1] = theta_vals[i]
+        result[i, 2] = phi_vals[i]
+        result[i, 3] = n_vals[i]
     
+    return {'r': r_vals, 'theta': theta_vals, 'phi': phi_vals, 'n': n_vals}
