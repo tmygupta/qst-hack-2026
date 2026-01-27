@@ -15,9 +15,10 @@ def draw_params(N : int, r_limits=(0,0.8), theta_limits=(0,np.pi/2),
     r : np.ndarray, array of shape (N, 9) containing the drawn parameters
     """
     
-    r = np.random.Generator.uniform(r_limits[0], r_limits[1], size=(N, 3))
-    theta = np.random.Generator.uniform(theta_limits[0], theta_limits[1], size=(N, 3))
-    phi = np.random.Generator.uniform(phi_limits[0], phi_limits[1], size=(N, 3))
+    rng = np.random.default_rng()
+    r = rng.uniform(r_limits[0], r_limits[1], size=(N, 3))
+    theta = rng.uniform(theta_limits[0], theta_limits[1], size=(N, 3))
+    phi = rng.uniform(phi_limits[0], phi_limits[1], size=(N, 3))
     
     return np.hstack([r, theta, phi])
     
