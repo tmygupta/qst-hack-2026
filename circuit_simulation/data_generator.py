@@ -1,4 +1,12 @@
 import numpy as np
+import jax
+import jax.numpy as jnp
+from mrmustard.lab import SqueezedVacuum, BSgate, Circuit, Number
+from mrmustard.physics.wigner import wigner_discretized
+from tqdm import tqdm
+import os
+
+jax.config.update("jax_enable_x64", True)
 
 def draw_params(N : int, r_limits=(0,0.8), theta_limits=(0,np.pi/2),
                      phi_limits=(0,2*np.pi), n_modes=(0,3)):
@@ -58,6 +66,8 @@ def save_data(params,images, filename):
     """
     np.savez_compressed(filename, params=params, images=images)
     print(f"Data saved to {filename}")
+
+
 
 SEED = 42
 N_SAMPLES = 1000
