@@ -5,8 +5,6 @@ from mrmustard.lab import SqueezedVacuum, BSgate, Circuit, Number
 from mrmustard import math as mm_math
 from mrmustard.physics.wigner import wigner_discretized
 from tqdm import tqdm
-import os
-import matplotlib.pyplot as plt
 
 SEED = 42
 mm_math.change_backend("jax")
@@ -162,7 +160,7 @@ PARAM_LIMS = {
 np.random.seed(SEED)
 
 data_id = "001"
-filename = f"./data/data_{N_SAMPLES}_samples_{IMAGE_DIM}_pix_{IMAGE_DIM}_modes_{N_MODES}.npz"
+filename = f"./data/data_{N_SAMPLES}_samples_{IMAGE_DIM}_pix_{IMAGE_DIM}_modes_{N_MODES}_{data_id}.npz"
 
 params = draw_params(N_SAMPLES, **PARAM_LIMS)
 
