@@ -55,39 +55,82 @@ def draw_params(N_base: int, r_lims=(0,0.8), theta_lims=(0,np.pi/2),
     
     return {'r': r_batch, 'theta': theta_batch, 'phi': phi_batch, 'n': n_batch}
 
-def single_wigner_fx(r, theta, phi, m0, m1, xvec, pvec):
+def single_rho_fx(r, theta, phi, m0, m1):
     """
-    Simulates a single quantum optical circuit and returns its Wigner function.
-    
-    Args:
-        r: shape (3,) - squeezing magnitudes
-        theta: shape (3,) - BS angles
-        phi: shape (3,) - BS phases
-        m0: int, photon count for measurement on mode 0
-        m1: int, photon count for measurement on mode 1
-        xvec: ndarray, values for the phase space grid in x
-        pvec: ndarray, values for the phase space grid in p
+    Simulates a SINGLE circuit and returns the Density Matrix (rho).
     """
-    
     s0 = SqueezedVacuum(mode=0, r=r[0], phi=0.0)
     s1 = SqueezedVacuum(mode=1, r=r[1], phi=np.pi/2)
     s2 = SqueezedVacuum(mode=2, r=r[2], phi=0.0)
     input_state = [s0, s1, s2]
     
-    BS1 = BSgate((0, 1), theta[0], phi[0])
-    BS2 = BSgate((1, 2), theta[1], phi[1])
-    BS3 = BSgate((0, 1), theta[2], phi[2]) # TODO: check (0,2) or (0,1)
+    BS1 = BSgate(modes=(0, 1), theta=theta[0], phi=phi[0])
+    BS2 = BSgate(modes=(1, 2), theta=theta[1], phi=phi[1])
+    BS3 = BSgate(modes=(0, 1), theta=theta[2], phi=phi[2]) 
     interferometer = BS1 >> BS2 >> BS3
     
-    measurements = [m0, m1]
-    
-    circ = Circuit(input_state) >> interferometer >> Circuit(measurements)
-    
+    circ = Circuit(input_state) >> interferometer >> Circuit([m0, m1])
     sout = circ.contract().normalize()
     
-    wig, _, _ = wigner_discretized(sout.dm().ansatz.array, xvec, pvec)
+    return sout.dm().ansatz.array
+
+def compute_wigner_batch_numpy(rho_batch, xvec, pvec):
+    """
+    Takes a batch of density matrices (numpy) and computes Wigner functions
+    using the standard MrMustard implementation.
+    """
+    imgs = []
+    for rho in rho_batch:
+        # Standard MrMustard function
+        w, _, _ = wigner_discretized(rho, xvec, pvec)
+        imgs.append(w)
+    return np.array(imgs)
+
+def generate_data(params, pix_res=32, range_val=4.0):
+    """
+    Docstring for generate_data
     
-    return wig
+    :param params: Description
+    :param pix_res: Description
+    :param range_val: Description
+    """
+    xvec = np.linspace(-range_val, range_val, pix_res)
+    pvec = np.linspace(-range_val, range_val, pix_res)
+
+    r_all = jnp.array(params['r'])
+    theta_all = jnp.array(params['theta'])
+    phi_all = jnp.array(params['phi'])
+    n_all = params['n'] 
+    
+    total_samples = r_all.shape[0]
+    all_images = np.zeros((total_samples, pix_res, pix_res))
+    unique_ns = np.unique(n_all, axis=0)
+    
+    print(f"Processing {len(unique_ns)} unique patterns...")
+    
+    for n_vals in tqdm(unique_ns):
+        current_n_pair = tuple(map(int, n_vals))
+        mask = (n_all[:, 0] == current_n_pair[0]) & (n_all[:, 1] == current_n_pair[1])
+        indices = np.where(mask)[0]
+        if len(indices) == 0: continue
+
+        m0 = Number((0), n=current_n_pair[0]).dual
+        m1 = Number((1), n=current_n_pair[1]).dual
+
+        def scan_body(packed_args):
+            return single_rho_fx(packed_args[0], packed_args[1], packed_args[2], m0, m1)
+
+        jit_scanner = jax.jit(lambda r, t, p: jax.lax.map(scan_body, (r, t, p)))
+
+        batch_rhos_jax = jit_scanner(r_all[indices], theta_all[indices], phi_all[indices])
+        
+        batch_rhos_numpy = np.array(batch_rhos_jax)
+        
+        batch_imgs = compute_wigner_batch_numpy(batch_rhos_numpy, xvec, pvec)
+        
+        all_images[indices] = batch_imgs
+
+    return all_images
 
 # def generate_data(params, pix_res=15, range_val=4.0):
     """
@@ -203,26 +246,32 @@ def save_data(params, images, filename):
     Save the parameters and images to an .npz file.
     Parameters
     ----------
-    params : np.ndarray, array of shape (N, 9) containing the parameters
+    params : dict, containing the following keys:
+        'r': ndarray of shape (N, 3) - squeezing parameters
+        'theta': ndarray of shape (N, 3) - angle parameters
+        'phi': ndarray of shape (N, 3) - phase parameters
+        'n': ndarray of shape (N, 2) - photon number parameters (n0, n1)
     images : np.ndarray, array of shape (N, H, W) containing the Wigner images
     filename : str, name of the file to save the data to
     """
-    np.savez_compressed(filename, params=params, images=images)
+    
+    np.savez_compressed(filename, r=params['r'], theta=params['theta'], phi=params['phi'], n=params['n'], images=images)
     print(f"Data saved to {filename}")
 
 
-N_SAMPLES = 10
-IMAGE_DIM = 15
+N_SAMPLES = 10000
+IMAGE_DIM = 31
+N_MODES = 3
 PARAM_LIMS = {
     'r_lims': (0, 0.8),
     'theta_lims': (0, np.pi / 2),
     'phi_lims': (0, 2 * np.pi),
-    'n_max': 3
+    'n_max': N_MODES
 }
 np.random.seed(SEED)
 
 data_id = "001"
-filename = f"../data/data_{N_SAMPLES}_samples_{IMAGE_DIM}pix_{data_id}.npz"
+filename = f"./data/data_{N_SAMPLES}_samples_{IMAGE_DIM}_pix_{IMAGE_DIM}_modes_{N_MODES}.npz"
 
 params = draw_params(N_SAMPLES, **PARAM_LIMS)
 
