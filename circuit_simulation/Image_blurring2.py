@@ -40,12 +40,6 @@ def blur_wigner_images(images, mode="none", blurring_size=3, sigma=1.0, noise_fr
             augmented = convolve(augmented, kernel[None, :, :], mode="reflect")
 
 
-        # ----- Gaussian blur -----
-        # Physical meaning : Optical mode mismatch / finite bandwidth
-        elif m == "gaussian":
-            augmented = gaussian_filter(augmented, sigma=(0, sigma, sigma), mode="reflect")
-
-
         # ----- Optical loss channel ----- (Main noise process)
         # Physical meaning : Optical losses in fiber couplings or imperfections in beamsplitters ---> Mixing with vacuum
         elif m == "loss":
@@ -108,7 +102,7 @@ def blur_wigner_images(images, mode="none", blurring_size=3, sigma=1.0, noise_fr
         else:
             raise ValueError(
                 f"Unknown mode '{m}'. "
-                "Choose from ['box', 'gaussian', 'loss', 'phase', 'noise', 'none'].")
+                "Choose from ['box', 'loss', 'phase', 'noise', 'none'].")
 
     return augmented
 
